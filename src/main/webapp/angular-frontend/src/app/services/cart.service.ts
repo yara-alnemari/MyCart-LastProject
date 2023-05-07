@@ -18,21 +18,24 @@ export class CartService {
     return this.cartProducts;
   }
 
-  addToCart(product: any, selectedQuantity: number): void {
+  addToCart(product: any, selectedQuantity: any): void {
     // Check if the product is already in the cart
     const existingProductIndex = this.cartProducts.findIndex((p) => p.id === product.id);
     
     if (existingProductIndex >= 0) {
     // If the product is already in the cart, increase the quantity
-    this.cartProducts[existingProductIndex].quantity += selectedQuantity;
-     } else {
+    this.cartProducts[existingProductIndex].amount += parseInt(selectedQuantity);
+     console.log(selectedQuantity);
+    } 
+     else {
     // If the product is not in the cart, add it with the selected quantity
-    const productToAdd = { ...product, quantity: selectedQuantity };
+    const productToAdd = { ...product, amount: selectedQuantity };
     this.cartProducts.push(productToAdd);
-    }
+    console.log(selectedQuantity);
+   }
     
     // Show a message to indicate that the item has been added to the cart
-    alert('Added to cart!');
+    alert('Added to cart! :)');
     }
 
   clearCart() {
